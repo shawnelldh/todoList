@@ -1,11 +1,57 @@
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <script src="script.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-  </head>
-  <body>
-    <h1>Hello there!</h1>
-    <a href="/me.html">My other page</a>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todo list</title>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+  
+ <div class='container'>
+
+     <h1 style="text-align: center;">
+        Simple todo
+     </h1>
+   <ul id='result'>
+
+   </ul>
+<button onclick="getTodos()"> Get To Dos </button>
+  </div>
+
+
+
+</body>
+<script>
+var ul  = document.getElementById('result')
+    function getTodos(){
+     var xhr = new XMLHttpRequest()
+     var url =  "https://jsonplaceholder.typicode.com/todos" 
+     
+    xhr.open('GET' ,url,true  )
+
+    xhr.onload = function() {
+       console.log(JSON.parse(xhr.response))
+        xhr.responseText.foreach(todo =>  {
+
+             ul.append(`
+
+             <li>${todo.title}</li>
+
+            `)
+
+        });
+
+    }
+            
+
+   xhr.send()
+
+
+    }
+
+</script>
+
 </html>
